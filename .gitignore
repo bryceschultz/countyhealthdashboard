@@ -1,0 +1,8 @@
+datapipeline/env/
+datapipeline/etl/rds.cfg
+datapipeline/datasets/mortality/2011MortalityFinal.csv
+datapipeline/datasets/mortality/2016MortalityFinal.csv
+server/.env
+datapipeline/etl/__pycache__/*
+server/node_modules
+client/node_modules
