@@ -104,19 +104,22 @@ python etl/etl.py
 <br /> 
 
 ### If the data was increased by 100x.
-If the data was increased by 100x then analysis would need to be done to make sure the current datapipeline can handle such an amount of data. Currently the dataset pulls around 2 million rows from the CDC database and transforms the datasets to around 80,000 rows. The datapipeline, backend, and UI are all extremely performant with this amount of data. If the data were increased by 100x we would also need to change the tech stack that handles the data. AWS Redshift is a datawarehouse product and is able to handle large datasets much better than a traditional database. We would need to implement AWS Redshift.
+* If the data was increased by 100x then analysis would need to be done to make sure the current datapipeline can handle such an amount of data. Currently the dataset pulls around 2 million rows from the CDC database and transforms the datasets to around 80,000 rows. The datapipeline, backend, and UI are all extremely performant with this amount of data. If the data were increased by 100x we would also need to change the tech stack that handles the data. AWS Redshift is a datawarehouse product and is able to handle large datasets much better than a traditional database. We would need to implement AWS Redshift.
 <br />
 
 ### If the pipelines were run on a daily basis by 7am.
-If the pipelines were to be run on a daily basis at 7am the project would need to add Apache Airflow. After adding Airflow we could set up dags to run the data pipeline daily ay 7am.
+* If the pipelines were to be run on a daily basis at 7am the project would need to add Apache Airflow. After adding Airflow we could set up dags to run the data pipeline daily ay 7am.
 
 <br />
 
 ### If the database needed to be accessed by 100+ people.
-If the database needed to be accessed by 100+ people this would be easily possible as the database is currently AWS RDS. One thing we would need to be cognizant of if we went with this route is permissions - who do we want to be able to access what data? Or do we want all of our business users to be able to access all the data? These are questions we would work with our stakeholders to answer.
+* If the database needed to be accessed by 100+ people this would be easily possible as the database is currently AWS RDS. One thing we would need to be cognizant of if we went with this route is permissions - who do we want to be able to access what data? Or do we want all of our business users to be able to access all the data? These are questions we would work with our stakeholders to answer.
+
+<br />
 
 ## Choice of Technologies and Tools
--> REACT: I chose react because I have experience with it and enjoy getting better at it. It also renders incredibly quickly which is perfect for a dashboard application.
--> NODEJS: I chose NodeJS because I have experience with it but am always trying to improve. NodeJS makes for a great reliable backend/server.
- -> PostgreSQL: I chose Postgres as a DB because we previously used it in the Data Engineering course and I knew it was capable of handling the amount of data for this dashboard (~80,000 rows). Postgres is a more traditional Relational Database which is what I had in mind for this project.
--> How often the data should be updated: The data in this project is intended to run once and only once. The data I gathered from the USDA on fast food restaurants is only available for the years 2011 and 2016. If someone wanted to run the data pipeline more consistently they would have to work with the USDA to get them to provide updated data on a consistent schedule. If the user wanted to they could however pull the mortality data in the database on a monthly or yearly schedule as the CDC updates there WONDER database frequently.
+* REACT: I chose react because I have experience with it and enjoy getting better at it. It also renders incredibly quickly which is perfect for a dashboard application.
+
+* NODEJS: I chose NodeJS because I have experience with it but am always trying to improve. NodeJS makes for a great reliable backend/server.
+* PostgreSQL: I chose Postgres as a DB because we previously used it in the Data Engineering course and I knew it was capable of handling the amount of data for this dashboard (~80,000 rows). Postgres is a more traditional Relational Database which is what I had in mind for this project.
+* The data in this project is intended to run once and only once. The data I gathered from the USDA on fast food restaurants is only available for the years 2011 and 2016. If someone wanted to run the data pipeline more consistently they would have to work with the USDA to get them to provide updated data on a consistent schedule. If the user wanted to they could however pull the mortality data in the database on a monthly or yearly schedule as the CDC updates there WONDER database frequently.
