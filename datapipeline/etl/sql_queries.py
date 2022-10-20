@@ -7,24 +7,27 @@ mortality_table_drop = "DROP TABLE IF EXISTS mortality"
 # CREATE TABLES
 fast_food_table_create= ("""
 CREATE TABLE IF NOT EXISTS fast_food (
-    fips varchar,
+    fips varchar NOT NULL,
     state varchar,
     county varchar,
-    restuarants_2011 int,
-    restuarants_2016 int,
-    pct_change decimal
+    restuarants_2011 int NOT NULL,
+    restuarants_2016 int NOT NULL,
+    pct_change decimal NOT NULL,
+    CONSTRAINT fips
+      FOREIGN KEY(fips) 
+	    REFERENCES customers(fips)
+
 )
 """)
 
 mortality_table_create= ("""
 CREATE TABLE IF NOT EXISTS mortality (
-    county varchar,
-    state varchar,
     fips varchar,
-    cause_of_death varchar,
-    deaths int,
-    population varchar,
-    year int
+    cause_of_death varchar NOT NULL,
+    deaths int NOT NULL,
+    population int,
+    year int,
+    PRIMARY KEY(fips)
 )
 """)
 

@@ -22,4 +22,5 @@ def clean_data(dataset_dictionaries):
             df = pd.read_csv(dataset_dictionary["path"], index_col=False)
             df['fips'] = df['fips'].astype(str).str.zfill(5)
         dataset_dictionary["df"] = df
+        dataset_dictionary["row_count_df"] = len(df.index)
     return dataset_dictionaries
