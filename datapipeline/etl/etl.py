@@ -47,7 +47,7 @@ def main():
     print("etl.py fired")
     config = configparser.ConfigParser()
     config.read('rds.cfg')
-    engine = sa.create_engine(config['DBCONNECT']['CONN_STR'])
+    engine = sa.create_engine(f"postgresql://{config['DBCONNECT']['DB_USER']}:{config['DBCONNECT']['DB_PASSWORD']}@{config['DBCONNECT']['HOST']}:{config['DBCONNECT']['DB_PORT']}/{config['DBCONNECT']['DB_NAME']}")
     print("Now cleaning data")
 
     cleaned_data = clean_data([

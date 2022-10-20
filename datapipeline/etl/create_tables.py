@@ -32,10 +32,10 @@ def main():
 
     conn = psycopg2.connect(
         database=config['DBCONNECT']['DB_NAME'],
-        user=['DBCONNECT']['DB_USER'],
-        password=['DBCONNECT']['DB_PASSWORD'],
-        host=['DBCONNECT']['HOST'],
-        port=['DBCONNECT']['DB_PORT']
+        user=config['DBCONNECT']['DB_USER'],
+        password=config['DBCONNECT']['DB_PASSWORD'],
+        host=config['DBCONNECT']['HOST'],
+        port=config['DBCONNECT']['DB_PORT']
     )
 
     cur = conn.cursor()

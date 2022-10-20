@@ -3,58 +3,10 @@ This repo was created for a Udacity Data Engineering course. This repo is my fin
 
 ![image info](./assets/countyhealthdashboardscreenshot.png)
 
-<br/>
+<br />
 
-## Client
-<p>The client folder holds all the front end code. <br/>
-To get the front end up and running locally first cd into the folder
-</p>
+> **_NOTE:_**  For the UI to properly show up the user will need to create an AWS RDS postgres db and run the datapipeline to popluate their database. The user will also need to start the NodeJS server. After the pipeline has been run and the server has been started the user can then start the client/UI. If you don't follow this order the UI will be blank and errors will show in the browser console.
 
-```
-cd client
-```
-<p>Then run npm i</p>
-
-```
-npm i
-```
-
-<p>Then run npm start</p>
-
-```
-npm start
-```
-
-<br/>
-
-## Server
-<p>The server folder holds all the back end nodejs code. <br/>
-To get the back end up and running locally first add a .env file to the server folder and add the below details
-</p>
-
-```
-HOST="mydbendpoint"
-DB_NAME="mydbname"
-DB_USER="myuser"
-DB_PASSWORD="mypassword"
-DB_PORT=mydbport
-```
-
-<p>Next open a cmd prompt and cd into the folder</p>
-
-```
-cd server
-```
-<p>Then run npm i</p>
-
-```
-npm i
-```
-<p>Then run npm start</p>
-
-```
-npm start
-```
 <br/>
 
 ## Datapipeline
@@ -93,6 +45,59 @@ python etl/etl.py
 
 <br />
 
+## Server
+<p>The server folder holds all the back end nodejs code. <br/>
+To get the back end up and running locally first add a .env file to the server folder and add the below details
+</p>
+
+```
+HOST="mydbendpoint"
+DB_NAME="mydbname"
+DB_USER="myuser"
+DB_PASSWORD="mypassword"
+DB_PORT=mydbport
+```
+
+<p>Next open a cmd prompt and cd into the folder</p>
+
+```
+cd server
+```
+<p>Then run npm i</p>
+
+```
+npm i
+```
+<p>Then run npm start</p>
+
+```
+npm start
+```
+<br/>
+
+
+## Client
+<p>The client folder holds all the front end code. <br/>
+To get the front end up and running locally first cd into the folder
+</p>
+
+```
+cd client
+```
+<p>Then run npm i</p>
+
+```
+npm i
+```
+
+<p>Then run npm start</p>
+
+```
+npm start
+```
+
+<br/>
+
 ## ERD
  ![image info](./assets/DEA_Capstone_ERD.png)
  ![image info](./assets/countyhealthdashboardscreenshot.png)
@@ -123,3 +128,4 @@ python etl/etl.py
 * NODEJS: I chose NodeJS because I have experience with it but am always trying to improve. NodeJS makes for a great reliable backend/server.
 * PostgreSQL: I chose Postgres as a DB because we previously used it in the Data Engineering course and I knew it was capable of handling the amount of data for this dashboard (~80,000 rows). Postgres is a more traditional Relational Database which is what I had in mind for this project.
 * The data in this project is intended to run once and only once. The data I gathered from the USDA on fast food restaurants is only available for the years 2011 and 2016. If someone wanted to run the data pipeline more consistently they would have to work with the USDA to get them to provide updated data on a consistent schedule. If the user wanted to they could however pull the mortality data in the database on a monthly or yearly schedule as the CDC updates there WONDER database frequently.
+* SCHEMA: I chose to have the datapipeline stream the data into two tables (fast_food and mortality) as that makes the most sense. The datapipeline creates a fast_food table of which the fips column is the primary key, the fips column is the county identifier code. The fips column is the foreign key on the mortality table. The fips column being the connecting column was done on purpose as the map that the UI has on it uses a fips code to identify each county on the map. When a specific county is clicked on the map it allows for the UI to easily pass along that code and query the backend/db for applicable data.
